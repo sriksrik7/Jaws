@@ -6,3 +6,5 @@ This project monitors the shark tracking database and alerts a user based on the
 
 ## Architecture
 ![Architecture](images/architecture.jpg "Architecture")
+
+Created by graduate students from Stevens University
