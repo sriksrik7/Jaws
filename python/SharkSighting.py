@@ -1,12 +1,18 @@
 import datetime
 from enum import Enum
 
+from GpsCoordinates import GpsCoordinates
 
 
 class SharkType(Enum):
-    SAND_SHARK = 1
+    SAND = 1
     HAMMERHEAD = 2
     DOGFISH = 3
+    GREAT_WHITE = 4
+    MACKEREL = 5
+    SAW = 6
+    GROUND = 7
+
 
 class SharkSighting:
     def __init__(self, id: str, type: SharkType, coordinates: GpsCoordinates, timestamp: datetime.datetime):
@@ -16,5 +22,5 @@ class SharkSighting:
         self.timestamp = timestamp
 
     def __repr__(self):
-        return "SharkSighting([{0},{1},{2},{3}])".format(self.type, self.coordinates.x, self.coordinates.y,
-                                                         self.timestamp)
+        return "{0} - [{1}-{2}] location:{3},{4}".format(self.timestamp, self.id, self.type.name, self.coordinates.x,
+                                                       self.coordinates.y)
