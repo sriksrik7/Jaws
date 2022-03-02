@@ -35,7 +35,7 @@ class GpsCoordinates:
         self.latitude = keepCoordinateInRange(latitude, 90)
 
     def __repr__(self):
-        return "{0},{1}".format(self.latitude, self.longitude)
+        return "{0}, {1}".format(self.latitude, self.longitude)
 
 
 def milesToLongitude(miles: int):

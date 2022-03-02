@@ -19,7 +19,7 @@ class SharkRandomTest(unittest.TestCase):
             self.assertIsNotNone(sighting.type)
             sharkNames.add(sighting.id)
 
-        self.assertTrue(len(sightings) > 1)
+        self.assertTrue(len(sightings) > 0)
         self.assertTrue(len(sharkNames) <= populationSize)
 
     def testOneMonthOfSharksNearNyc(self):
@@ -39,7 +39,7 @@ class SharkRandomTest(unittest.TestCase):
         self.getAndValidateSightings(keyWest, mileRadius, populationSize, fromTime, toTime)
 
     def testOneDayOfSharksNearOuterBanks(self):
-        fromTime = datetime(2022, 11, 1)
+        fromTime = datetime(2022, 11, 6)
         toTime = datetime(2022, 11, 7)
         mileRadius = 20
         populationSize = 1
