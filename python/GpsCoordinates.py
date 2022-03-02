@@ -1,8 +1,6 @@
 import math
 from enum import Enum
 
-SQRT_2 = math.sqrt(2)
-
 
 class Direction(Enum):
     NORTH = 1
@@ -21,7 +19,7 @@ def keepCoordinateInRange(coordinate: float, range: float) -> float:
     if (coordinate > range):
         while (coordinate > range):
             coordinate = coordinate - range
-        return -range - coordinate
+        return -range + coordinate
     elif (coordinate < -range):
         while (coordinate < -range):
             coordinate = coordinate + range
@@ -29,13 +27,15 @@ def keepCoordinateInRange(coordinate: float, range: float) -> float:
     return coordinate
 
 
+# Longitude = X axis
+# Latitude = Y axis
 class GpsCoordinates:
-    def __init__(self, x: float, y: float):
-        self.x = keepCoordinateInRange(x, 180)
-        self.y = keepCoordinateInRange(y, 90)
+    def __init__(self, latitude: float, longitude: float):
+        self.longitude = keepCoordinateInRange(longitude, 180)
+        self.latitude = keepCoordinateInRange(latitude, 90)
 
     def __repr__(self):
-        return "GpsCoordinates([{0},{1}])".format(self.x, self.y)
+        return "{0},{1}".format(self.latitude, self.longitude)
 
 
 def milesToLongitude(miles: int):
@@ -46,34 +46,24 @@ def milesToLatitude(miles: int):
     return miles * 0.0144927536231884
 
 
-def move(coordinate: GpsCoordinates, miles: int, direction: Direction) -> GpsCoordinates:
-    newCoordinate = coordinate
-    match direction:
-        case Direction.NORTH:
-            newCoordinate = GpsCoordinates(coordinate.x, coordinate.y + milesToLongitude(miles))
-        case Direction.SOUTH:
-            newCoordinate = GpsCoordinates(coordinate.x, coordinate.y - milesToLongitude(miles))
-        case Direction.EAST:
-            newCoordinate = GpsCoordinates(coordinate.x + milesToLatitude(miles), coordinate.y)
-        case Direction.WEST:
-            newCoordinate = GpsCoordinates(coordinate.x - milesToLatitude(miles), coordinate.y)
-        case Direction.NORTH_EAST:
-            newCoordinate = GpsCoordinates(coordinate.x + milesToLatitude(miles // SQRT_2),
-                                           coordinate.y + milesToLongitude(miles // SQRT_2))
-        case Direction.NORTH_WEST:
-            newCoordinate = GpsCoordinates(coordinate.x - milesToLatitude(miles // SQRT_2),
-                                           coordinate.y + milesToLongitude(miles // SQRT_2))
-        case Direction.SOUTH_EAST:
-            newCoordinate = GpsCoordinates(coordinate.x + milesToLatitude(miles // SQRT_2),
-                                           coordinate.y - milesToLongitude(miles // SQRT_2))
-        case Direction.SOUTH_WEST:
-            newCoordinate = GpsCoordinates(coordinate.x - milesToLatitude(miles // SQRT_2),
-                                           coordinate.y - milesToLongitude(miles // SQRT_2))
-    return newCoordinate
-
-
-def getCircleOfCoordinates(centerPoint: GpsCoordinates, mileRadius: int) -> [GpsCoordinates]:
+def getCoordinatesInAllCardinalDirections(center: GpsCoordinates, mileDistance: int) -> [GpsCoordinates]:
+    latitudeShift = milesToLatitude(mileDistance)
+    longitudeShift = milesToLatitude(mileDistance)
     coordinates = []
-    for direction in Direction:
-        coordinates.append(move(centerPoint, mileRadius, direction))
+    coordinates.append(GpsCoordinates(center.latitude + latitudeShift, center.longitude))
+    coordinates.append(GpsCoordinates(center.latitude - latitudeShift, center.longitude))
+    coordinates.append(GpsCoordinates(center.latitude, center.longitude - longitudeShift))
+    coordinates.append(GpsCoordinates(center.latitude, center.longitude + longitudeShift))
+    return coordinates
+
+
+def getCoordinatesInAllInterCardinalDirections(center: GpsCoordinates, mileDistance: int) -> [GpsCoordinates]:
+    mileShift = mileDistance // math.sqrt(2)
+    latitudeShift = milesToLatitude(mileShift)
+    longitudeShift = milesToLongitude(mileShift)
+    coordinates = []
+    coordinates.append(GpsCoordinates(center.latitude + latitudeShift, center.longitude + longitudeShift))
+    coordinates.append(GpsCoordinates(center.latitude - latitudeShift, center.longitude - longitudeShift))
+    coordinates.append(GpsCoordinates(center.latitude + latitudeShift, center.longitude - longitudeShift))
+    coordinates.append(GpsCoordinates(center.latitude - latitudeShift, center.longitude + longitudeShift))
     return coordinates

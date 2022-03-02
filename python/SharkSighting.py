@@ -22,5 +22,5 @@ class SharkSighting:
         self.timestamp = timestamp
 
     def __repr__(self):
-        return "{0} - [{1}-{2}] location:{3},{4}".format(self.timestamp, self.id, self.type.name, self.coordinates.x,
-                                                       self.coordinates.y)
+        return "{0} - [{1}-{2}] location:{3},{4}".format(self.timestamp, self.id, self.type.name, self.coordinates.longitude,
+                                                         self.coordinates.latitude)

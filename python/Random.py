@@ -5,7 +5,8 @@ from datetime import timedelta
 
 import names
 from GpsCoordinates import GpsCoordinates
-from GpsCoordinates import getCircleOfCoordinates
+from GpsCoordinates import getCoordinatesInAllCardinalDirections
+from GpsCoordinates import getCoordinatesInAllInterCardinalDirections
 from GpsCoordinates import milesToLatitude
 from GpsCoordinates import milesToLongitude
 from SharkSighting import SharkSighting
@@ -26,18 +27,18 @@ def getSightings(gpsCoordinate: GpsCoordinates, mileRadius: int, populationSize:
     days = (maxSecondsAfterFromTime / 86400)
     maxPossibleSharkSightings = int(days * populationSize)
 
-    # Create inner & outer circles of cords with input as center point
-    innerCircle = getCircleOfCoordinates(gpsCoordinate, mileRadius // 2)
-    outerCircle = getCircleOfCoordinates(gpsCoordinate, mileRadius)
-
-    # Scan circles to confirm there is water somewhere
-    waterCoordinates = []
-    for coordinate in (innerCircle + outerCircle):
-        if not globe.is_land(coordinate.x, coordinate.y):
-            waterCoordinates.append(coordinate)
+    # Confirm water exists in perimeter
+    mileScanRadius = mileRadius
+    waterCoordinate = None
+    while waterCoordinate is None and mileScanRadius > 0:
+        waterCoordinate = findWater(getCoordinatesInAllCardinalDirections(gpsCoordinate, mileScanRadius))
+        if waterCoordinate is not None:
+            waterCoordinate = findWater(getCoordinatesInAllInterCardinalDirections(gpsCoordinate, mileScanRadius))
+        # Increment scan distance down 1 mile at a time
+        mileScanRadius = mileScanRadius - 1
 
     # Throw if water is not found
-    if (len(waterCoordinates) == 0):
+    if (waterCoordinate is None):
         raise ValueError('Water not found within ' + str(mileRadius) + ' miles of ' + repr(gpsCoordinate))
 
     # Generate shark population
@@ -61,21 +62,29 @@ def getSightings(gpsCoordinate: GpsCoordinates, mileRadius: int, populationSize:
             yMileShift = random.randrange(-maxYMileShift, maxYMileShift)
 
         # Execute latitutde/longitude conversions and shift coordinates accordingly
-        x = gpsCoordinate.x + milesToLatitude(xMileShift)
-        y = gpsCoordinate.y + milesToLongitude(yMileShift)
+        randomLatitude = gpsCoordinate.latitude + milesToLatitude(yMileShift)
+        randomLongitude = gpsCoordinate.longitude + milesToLongitude(xMileShift)
 
         # If the randomly selected coordinate is in water, it becomes the location of a shark sighting
-        if not globe.is_land(x, y):
-            sighting = buildRandomSighting(GpsCoordinates(x, y), maxSecondsAfterFromTime, fromTime, sharkDict)
+        if not globe.is_land(randomLatitude, randomLongitude):
+            sighting = buildRandomSighting(GpsCoordinates(randomLatitude, randomLongitude), maxSecondsAfterFromTime,
+                                           fromTime, sharkDict)
             sigthings.append(sighting)
 
     # Ensure we always return at least 1 sighting
     if len(sigthings) == 0:
-        return [buildRandomSighting(waterCoordinates[0], maxSecondsAfterFromTime, fromTime, sharkDict)]
+        return [buildRandomSighting(waterCoordinate, maxSecondsAfterFromTime, fromTime, sharkDict)]
 
-    #Sort by timestamp
+    # Sort by timestamp
     sigthings.sort(key=lambda x: x.timestamp, reverse=True)
     return sigthings
+
+
+def findWater(coordinates: [GpsCoordinates]) -> GpsCoordinates:
+    for c in coordinates:
+        if not globe.is_land(c.latitude, c.longitude):
+            return c
+    return None
 
 
 def buildRandomSighting(gpsCoordinate: GpsCoordinates, maxSecondsAfterFromTime: int,
