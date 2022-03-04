@@ -7,6 +7,6 @@ install:
   - pip install Global_land_mask
 
 script:
-  - cd python/
-  - python -m unittest ../GpsCoordinatesTest.py
-  - python -m unittest ../RandomTest.py
+  - cd python
+  - python -m unittest ./test/GpsCoordinatesTest.py
+  - python -m unittest ./test/RandomTest.py
