@@ -7,4 +7,7 @@ This project monitors the shark tracking database and alerts a user based on the
 ## Architecture
 ![Architecture](images/architecture.jpg "Architecture")
 
+## Back Test Status
+[![build status of master](https://travis-ci.org/github/sriksrik7/Jaws.svg?branch=master)](https://travis-ci.org/github/sriksrik7/Jaws) 
+
 Created by graduate students from Stevens University
