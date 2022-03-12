@@ -2,7 +2,7 @@ import unittest
 from datetime import datetime
 
 from GpsCoordinates import GpsCoordinates
-from Random import getSightings
+from deprecated.Random import getSightings
 
 
 class SharkRandomTest(unittest.TestCase):
