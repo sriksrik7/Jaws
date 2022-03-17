@@ -8,5 +8,4 @@ install:
 
 script:
   - cd python
-  - python -m unittest test/GpsCoordinatesTest.py
-  - python -m unittest test/RandomTest.py
+  - python -m unittest test/MainTest.py
