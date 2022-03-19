@@ -1,4 +1,5 @@
 import csv
+import traceback
 from datetime import datetime
 
 from app import Gps
@@ -64,17 +65,15 @@ def mapSourceCsvRowToSharkAttack(row: [str]) -> SharkAttack:
 
 # Write list of shark attacks to csv in our own cleaner format (including latitude/longitude enrichment)
 def writeSharkAttacksToCsv(sharkAttacks: [SharkAttack], csvFile: str):
-    try:
-        with open(csvFile, 'w', newline='') as f:
-            writer = csv.writer(f)
-            for s in sharkAttacks:
+    with open(csvFile, 'w', newline='') as f:
+        writer = csv.writer(f)
+        for s in sharkAttacks:
+            try:
                 writer.writerow(
                     [s.id, s.datetime, s.latitude, s.longitude, s.address, s.type, s.activity, s.name, s.sex, s.age,
                      s.injury, s.fatal, s.species, s.source, s.link])
-    except BaseException as e:
-        print('BaseException:', filename)
-    else:
-        print('Data has been loaded successfully !')
+            except BaseException:
+                traceback.print_exc()
 
 
 # Convert processed shark attack csv into list of shark attack objects
