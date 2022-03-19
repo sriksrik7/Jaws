@@ -1,7 +1,7 @@
 import datetime
 from enum import Enum
 
-from GpsCoordinates import GpsCoordinates
+from app.deprecated.GpsCoordinates import GpsCoordinates
 
 
 class SharkType(Enum):

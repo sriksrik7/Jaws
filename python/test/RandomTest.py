@@ -1,8 +1,8 @@
 import unittest
 from datetime import datetime
 
-from GpsCoordinates import GpsCoordinates
-from deprecated.Random import getSightings
+from app.deprecated.GpsCoordinates import GpsCoordinates
+from app.deprecated.Random import getSightings
 
 
 class SharkRandomTest(unittest.TestCase):

@@ -1,6 +1,6 @@
 import unittest
 
-from GpsCoordinates import GpsCoordinates
+from app.deprecated.GpsCoordinates import GpsCoordinates
 
 
 class GpsCoordinatesTest(unittest.TestCase):

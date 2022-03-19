@@ -4,11 +4,11 @@ import random
 from datetime import timedelta
 
 import names
-from GpsCoordinates import GpsCoordinates
-from GpsCoordinates import getCoordinatesInAllCardinalDirections
-from GpsCoordinates import getCoordinatesInAllInterCardinalDirections
-from GpsCoordinates import milesToLatitude
-from GpsCoordinates import milesToLongitude
+from app.deprecated.GpsCoordinates import GpsCoordinates
+from app.deprecated.GpsCoordinates import getCoordinatesInAllCardinalDirections
+from app.deprecated.GpsCoordinates import getCoordinatesInAllInterCardinalDirections
+from app.deprecated.GpsCoordinates import milesToLatitude
+from app.deprecated.GpsCoordinates import milesToLongitude
 from SharkSighting import SharkSighting
 from SharkSighting import SharkType
 from global_land_mask import globe
