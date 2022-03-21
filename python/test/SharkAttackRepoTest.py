@@ -11,3 +11,6 @@ class SharkAttackRepoTest(unittest.TestCase):
         repo = SharkAttackRepo(':memory:')
         for attack in attacks:
             repo.add(attack)
+        results = repo.getAll()
+        for result in results:
+            print(str(result))

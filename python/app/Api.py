@@ -1,5 +1,5 @@
 from flask import Flask
-from app.SharkAttackRepo import SharkAttackRepo
+from SharkAttackRepo import SharkAttackRepo
 
 app = Flask(__name__)
 repo = SharkAttackRepo()
