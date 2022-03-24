@@ -1,11 +1,12 @@
 import sqlite3
 
+from app.Csv import getSharkAttacksFromProcessedCsv
 from app.SharkAttack import SharkAttack
 
 
 class SharkAttackRepo:
     def __init__(self, connect: str):
-        self.con = sqlite3.connect(connect)
+        self.con = sqlite3.connect(connect, check_same_thread=False)
         self.con.isolation_level = None
         if (':memory:' == connect):
             self.createSharkAttackTable()
@@ -20,6 +21,10 @@ class SharkAttackRepo:
                        sanitize(sharkAttack.age), sanitize(sharkAttack.injury), sanitize(sharkAttack.fatal),
                        sanitize(sharkAttack.species), sanitize(sharkAttack.source), sanitize(sharkAttack.link))
         self.__executeStatement(insertStatement)
+
+    def addAllCsv(self, csvFile: str):
+        for attack in getSharkAttacksFromProcessedCsv(csvFile):
+            self.add(attack)
 
     def getAll(self) -> [SharkAttack]:
         return self.__executeQuery("""
@@ -84,7 +89,7 @@ class SharkAttackRepo:
         source = row[13]
         link = row[14]
         return SharkAttack(id, datetime, latitude, longitude, address, type, activity, name, sex, age, injury,
-                             fatal, species, source, link)
+                           fatal, species, source, link)
 
 
 def sanitize(data: str) -> str:

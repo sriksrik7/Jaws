@@ -21,6 +21,22 @@ class SharkAttack:
         self.source = source
         self.link = link
 
+    def serialize(self):
+        return {"id": self.id,
+                "datetime": self.datetime,
+                "latitude": self.latitude,
+                "longitude": self.longitude,
+                "address": self.address,
+                "type": self.type,
+                "activity": self.activity,
+                "sex": self.sex,
+                "age": self.age,
+                "injury": self.injury,
+                "fatal": self.fatal,
+                "species": self.species,
+                "source": self.source,
+                "link": self.link}
+
     def __repr__(self):
         return "datetime: {0}\naddress: {1}\nlatitude: {2}\nlongitude: {3}\ntype: {4}\nage: {5}\nsex: {6}\ninjury: {7}\nfatal: {8}" \
                "\nspecies: {9}\nsource: {10}\nlink: {11}\nid:{12}".format(
