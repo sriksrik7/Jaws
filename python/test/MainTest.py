@@ -1,15 +1,13 @@
 import unittest
 
-from test.GpsCoordinatesTest import GpsCoordinatesTest
-from test.RandomTest import SharkRandomTest
+from test.SharkAttackRepoTest import SharkAttackRepoTest
 
 # Main Class to test all unit test classes
 
 
 class TestAll(unittest.TestCase):
 
-    GpsCoordinatesTest()
-    SharkRandomTest()
+    SharkAttackRepoTest()
 
 
 if __name__ == "__main__":
