@@ -4,7 +4,6 @@ python:
 install:
   - pip install numpy
   - pip install Global_land_mask
-  - pip install csv
   - pip install python-dateutil
   - pip install geopy
   - pip install pysqlite3
