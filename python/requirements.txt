@@ -1,7 +1,0 @@
-py -m pip install pysqlite3
-py -m pip install global_land_mask
-py -m pip install names
-py -m pip install numpy
-py -m pip install csv
-py -m pip install python-dateutil
-py -m pip install geopy
