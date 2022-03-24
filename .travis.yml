@@ -2,11 +2,13 @@ language: python
 python:
   - "3.7"
 install:
-  - pip install numpy
-  - pip install Global_land_mask
-  - pip install python-dateutil
-  - pip install geopy
+  - pip3 install --upgrade pip
+  - pip3 install numpy
+  - pip3 install Global_land_mask
+  - pip3 install python-dateutil
+  - pip3 install geopy
+  - pip3 install certifi
 
 script:
-  - cd python
-
+  - cd back-end
+  - python -m unittest test/MainTest.py
