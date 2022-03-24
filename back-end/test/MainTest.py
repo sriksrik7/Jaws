@@ -6,6 +6,7 @@ from test.SharkAttackRepoTest import SharkAttackRepoTest
 
 
 class TestAll(unittest.TestCase):
+    SharkAttackRepoTest()
 
 
 if __name__ == "__main__":
