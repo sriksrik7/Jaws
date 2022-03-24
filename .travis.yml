@@ -4,6 +4,8 @@ python:
 install:
   - pip install numpy
   - pip install Global_land_mask
+  - pip install python-dateutil
+  - pip install geopy
 
 script:
   - cd python
