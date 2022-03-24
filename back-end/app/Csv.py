@@ -79,7 +79,7 @@ def writeSharkAttacksToCsv(sharkAttacks: [SharkAttack], csvFile: str):
 # Convert processed shark attack csv into list of shark attack objects
 def getSharkAttacksFromProcessedCsv(csvFile: str) -> [SharkAttack]:
     attacks = []
-    with open(csvFile) as csv_file:
+    with open(csvFile, encoding = "ISO-8859-1") as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         line_count = 0
         for row in csv_reader:
