@@ -5,7 +5,7 @@ from app.SharkAttackRepo import SharkAttackRepo
 
 class SharkAttackRepoTest(unittest.TestCase):
 
-    def testSharkAttackRepo(self):
+    def testAddAllCsv(self):
         repo = SharkAttackRepo(':memory:')
         repo.addAllCsv('../attacks-processed.csv')
         results = repo.getAll()
