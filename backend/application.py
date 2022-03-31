@@ -1,10 +1,10 @@
 from backend.attack_repo import SharkAttackRepo
 from flask import Flask, jsonify
 
-app = Flask(__name__)
+application = Flask(__name__)
 
 
-@app.route("/attacks/all")
+@application.route("/attacks/all", methods=['GET'])
 def getAll():
     json = []
     repo = SharkAttackRepo(':memory:')
