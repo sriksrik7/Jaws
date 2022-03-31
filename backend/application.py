@@ -3,7 +3,7 @@ from flask import Flask, jsonify
 
 app = Flask(__name__)
 repo = SharkAttackRepo(':memory:')
-repo.addAllCsv('/var/app/current/backend/attacks-processed.csv')
+repo.addAllCsv('/var/app/current/backend/attacks-processed-sample.csv')
 
 
 @app.route("/attacks/all")
