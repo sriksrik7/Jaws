@@ -8,7 +8,8 @@ class SharkAttackRepoTest(unittest.TestCase):
 
     def testAddAllCsv(self):
         repo = SharkAttackRepo(':memory:')
-        repo.add(os.path.abspath("backend/test/attacks-test.csv"))
+
+        repo.addAllCsv(os.path.abspath("backend/test/attacks-test.csv"))
         results = repo.getAll()
         for result in results:
             print(str(result))
