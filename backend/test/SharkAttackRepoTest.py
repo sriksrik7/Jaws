@@ -1,6 +1,6 @@
 import unittest
 import os
-from backend.attack_repo import SharkAttackRepo
+from Jaws.backend.attack_repo import SharkAttackRepo
 
 os.path.abspath(os.getcwd())
 
