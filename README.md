@@ -4,4 +4,7 @@ This project monitors the shark attack database and alerts a user based on their
 ## Back-End Test Status
 [![build status of Back-End](https://app.travis-ci.com/sriksrik7/Jaws.svg?branch=main)](https://app.travis-ci.com/github/sriksrik7/Jaws)
 
+[![Coverage Status](https://coveralls.io/repos/github/sriksrik7/Jaws/badge.svg?branch=main)](https://coveralls.io/github/sriksrik7/Jaws?branch=main)
+
+
 Created by graduate students from Stevens University
