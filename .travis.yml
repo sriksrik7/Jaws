@@ -10,7 +10,7 @@ install:
   - pip3 install python-dateutil
   - pip3 install geopy
   - pip3 install certifi
-  - pip3 install coveralls
+  - pip3 install python-coveralls
 script:
   - cd back-end
   - python -m coverage run -m unittest test/MainTest.py
