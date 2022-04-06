@@ -10,5 +10,4 @@ install:
   - pip3 install certifi
 
 script:
-  - cd backend
-  - python -m unittest test/MainTest.py
+  - python -m unittest backend/test/MainTest.py
