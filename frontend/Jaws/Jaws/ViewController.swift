@@ -1,0 +1,74 @@
+//
+//  ViewController.swift
+//  Jaws
+//
+//  Created by Jaws Team.
+//
+
+import UIKit
+
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    @IBOutlet var tableView: UITableView!
+    
+    let Title = [("Bull Shark"),("Great White Shark"),("Hammer Head Shark"),("Megamouth Shark"),("Whale Shark"),("Cow Shark"),("Thresher Shark"),("Cat Shark"),("Nurse Shark"),("Silky Shark"),("Tiger Shark"),("Lemon Shark"),("Galapagos Shark")]
+    
+    let Text = [
+                ("The bull shark (Carcharhinus leucas), also known as the \"Zambezi shark\" (informally \"zambi\") in Africa and \"Lake Nicaragua shark\" in Nicaragua is a requim Shark commonly found worldwide in warm, shallow waters along coasts and in rivers. It is known for its aggressive nature, and presence in warm,shallow brackish and freshwater system including estuaries and rivers Bull sharks can thrive in both salt and fresh water and can travel far up rivers. They have been known to travel up the Mississippi River as far as Alton, Illinoisabout 1,100 kilometres (700 mi) from the ocean. However, few freshwater human-shark interactions have been recorded. Larger-sized bull sharks are probably responsible for the majority of near-shore shark attacks, including many bites attributed to other species. "),
+    
+                ("The great white shark (Carcharodon carcharias), also known as the white shark, white pointer, or simply great white, is a species of large mackerel shark which can be found in the coastal surface waters of all the major oceans. It is notable for its size, with larger female individuals growing to 6.1 m (20 ft) in length and 1,905–2,268 kg (4,200–5,000 lb) in weight at maturity.However, most are smaller; males measure 3.4 to 4.0 m (11 to 13 ft), and females measure 4.6 to 4.9 m (15 to 16 ft) on average.According to a 2014 study, the lifespan of great white sharks is estimated to be as long as 70 years or more, well above previous estimates,making it one of the longest lived cartilaginous fishes currently known.According to the same study, male great white sharks take 26 years to reach sexual maturity, while the females take 33 years to be ready to produce offspring.Great white sharks can swim at speeds of 25 km/hr (16 mph)for short bursts and to depths of 1,200 m (3,900 ft)."),
+                ("The hammerhead sharks are a group of sharks that form the family Sphyrnidae, so named for the unusual and distinctive structure of their heads, which are flattened and laterally extended into a \"hammer\" shape called a cephalofoil. Most hammerhead species are placed in the genus Sphyrna, while the winghead shark is placed in its own genus, Eusphyra. Many different, but not necessarily mutually exclusive, functions have been postulated for the cephalofoil, including sensory reception, manoeuvering, and prey manipulation. The cephalofoil gives the shark superior binocular vision and depth perception.Hammerheads are found worldwide in warmer waters along coastlines and continental shelves. Unlike most sharks, some hammerhead species usually swim in schools during the day, becoming solitary hunters at night. Some of these schools can be found near Malpelo Island in Colombia, the Galápagos Islands in Ecuador, Cocos Island off Costa Rica, near Molokai in Hawaii, and off southern and eastern Africa."),
+                ("The megamouth shark (Megachasma pelagios) is a species of deepwater shark. It is rarely seen by humans and is the smallest of the three extant filter-feeding sharks alongside the whale shark and basking shark. Since its discovery in 1976, fewer than 100 specimens have been observed or caught.[2] Like the other two planktivorous sharks, it swims with its mouth wide open, filtering water for plankton and jellyfish. It is recognizable from its large head with rubbery lips. The megamouth is so unlike any other type of shark that it is usually considered to be the sole extant species in the family Megachasmidae, though some scientists have suggested it may belong in the family Cetorhinidae, of which the basking shark is currently the sole extant member"),
+                ("The whale shark (Rhincodon typus) is a slow-moving, filter-feeding carpet shark and the largest known extant fish species. The largest confirmed individual had a length of 18.8 m (61.7 ft).The whale shark holds many records for size in the animal kingdom, most notably being by far the largest living nonmammalian vertebrate. It is the sole member of the genus Rhincodon and the only extant member of the family Rhincodontidae, which belongs to the subclass Elasmobranchii in the class Chondrichthyes. Before 1984 it was classified as Rhiniodon into Rhinodontidae.The whale shark is found in open waters of the tropical oceans and is rarely found in water below 21 °C (70 °F).Studies looking at vertebral growth bands and the growth rates of free-swimming sharks have estimated whale shark lifespans at 80–130 years.Whale sharks have very large mouths and are filter feeders, which is a feeding mode that occurs in only two other sharks, the megamouth shark and the basking shark. They feed almost exclusively on plankton and small fishes, and pose no threat to humans."),
+                ("Cow sharks are a shark family, the Hexanchidae, characterized by an additional pair or pairs of gill slits. Its 37 species are placed within the 10 genera: Gladioserratus, Heptranchias, Hexanchus, Notidanodon, Notorynchus, Pachyhexanchus, Paraheptranchias, Pseudonotidanus, Welcommia, and Weltonia. Their most distinctive feature, however, is the presence of a sixth, and, in two genera, a seventh, gill slit, in contrast to the five found in all other sharks.They range from 1.4 to 5.5 m (4.6 to 18.0 ft) in adult body length.Cow sharks are ovoviviparous, with the mother retaining the egg cases in her body until they hatch. They feed on relatively large fish of all kinds, including other sharks, as well as on crustaceans and carrion.The only fossil records of the cow shark consist of mainly only isolated teeth. Although skeletal remains for this species have been found from the Jurassic time period, these have been very rare and have only been found in the \"Late Jurassic lithographic limestones of South Germany, Nusplingen, Solnhofen, and late Cretaceous calcareous sediments of Lebanon.\" Due to these sparse records some scientists conclude that the cow shark is now a more \"diverse and numerous species\""),
+                ("Thresher sharks are large lamniform sharks of the family Alopiidae found in all temperate and tropical oceans of the world; the family contains three extant species, all within the genus Alopias. All three thresher shark species have been listed as vulnerable to extinction by the World Conservation Union since 2007. "),
+              ("Catsharks are ground sharks of the family Scyliorhinidae. They are one of the largest families of sharks with around 160 species placed in 17 genera. Although they are generally known as catsharks, some species can, also, be called dogfish due to previous naming"),
+                ("The nurse shark (Ginglymostoma cirratum) is an elasmobranch fish in the family Ginglymostomatidae. The conservation status of the nurse shark is globally assessed as Vulnerable in the IUCN List of Threatened Species.They are considered to be a species of least concern in the United States and in The Bahamas, but considered to be near threatened in the western Atlantic Ocean because of their vulnerable status in South America and reported threats throughout many areas of Central America and the Caribbean.They are directly targeted in some fisheries and considered by-catch in others.Nurse sharks are an important species for shark research (predominantly in physiology).They are robust and able to tolerate capture, handling, and tagging extremely well.As inoffensive as nurse sharks may appear, they are ranked fourth in documented shark bites on humans,likely due to incautious behavior by divers on account of the nurse shark's slow, sedentary nature."),
+                ("The silky shark (Carcharhinus falciformis), also known by numerous names such as blackspot shark, grey whaler shark, olive shark, ridgeback shark, sickle shark, sickle-shaped shark and sickle silk shark, is a species of requiem shark, in the family Carcharhinidae, named for the smooth texture of its skin. It is one of the most abundant sharks in the pelagic zone, and can be found around the world in tropical waters. Highly mobile and migratory, this shark is most often found over the edge of the continental shelf down to 50 m (164 ft). The silky shark has a slender, streamlined body and typically grows to a length of 2.5 m (8 ft 2 in). It can be distinguished from other large requiem sharks by its relatively small first dorsal fin with a curving rear margin, its tiny second dorsal fin with a long free rear tip, and its long, sickle-shaped pectoral fins. It is a deep, metallic bronze-gray above and white below.With prey often scarce in its oceanic environment, the silky shark is a swift, inquisitive, and persistent hunter. It feeds mainly on bony fishes and cephalopods, and has been known to drive them into compacted schools before launching open-mouthed, slashing attacks. This species often trails schools of tuna, a favored prey. Its sense of hearing is extremely acute, allowing it to localize the low-frequency noises generated by other feeding animals, and, by extension, sources of food. The silky shark is viviparous, meaning that the developing embryos are sustained by a placental connection to their mother. Significant geographical variation is seen in its life history details. Reproduction occurs year-round except in the Gulf of Mexico, where it follows a seasonal cycle. Females give birth to litters of up to 16 pups annually or biennially. The newborn sharks spend their first months in relatively sheltered reef nurseries on the outer continental shelf, growing substantially before moving into the open ocean."),
+                ("The tiger shark (Galeocerdo cuvier) is a species of requiem shark and the only extant member of the genus Galeocerdo. It is a large macropredator, capable of attaining a length over 5 m (16 ft 5 in).Populations are found in many tropical and temperate waters, especially around central Pacific islands. Its name derives from the dark stripes down its body, which resemble a tiger's pattern, but fade as the shark matures.The tiger shark is a solitary, mostly nocturnal hunter. It is notable for having the widest food spectrum of all sharks, with a range of prey that includes crustaceans, fish, seals, birds, squid, turtles, sea snakes, dolphins, and even other smaller sharks. It also has a reputation as a \"garbage eater\", consuming a variety of inedible, man-made objects that linger in its stomach. Though apex predators, tiger sharks are sometimes taken as prey by groups of killer whales.It is considered a near threatened species due to finning and fishing by humans.The tiger shark is second only to the great white in recorded fatal attacks on humans, but these events are still exceedingly rare."),
+                ("The lemon shark (Negaprion brevirostris) is a species of shark from the family Carcharhinidae and is classified as a Vulnerable species by the International Union for the Conservation of Nature.Lemon sharks can grow to 3.4 metres (11 ft) in length. They are often found in shallow subtropical waters and are known to inhabit and return to specific nursery sites for breeding. Often feeding at night, these sharks use electroreceptors to find their main source of prey: fish. Lemon sharks enjoy the many benefits of group living such as enhanced communication, courtship, predatory behavior, and protection. This species of shark gives birth to live young, and the females are polyandrous and have a biennial reproductive cycle. Lemon sharks are not thought to be a large threat to humans. The lemon shark's life span is unknown, but the average shark is 25 to 30 years old."),
+                ("The Galapagos shark (Carcharhinus galapagensis) is a species of requiem shark, in the family Carcharhinidae, found worldwide. It favors clear reef environments around oceanic islands, where it is often the most abundant shark species. A large species that often reaches 3.0 m (9.8 ft), the Galapagos reef shark has a typical fusiform \"reef shark\" shape and is very difficult to distinguish from the dusky shark (C. obscurus) and the grey reef shark (C. amblyrhynchos). An identifying character of this species is its tall first dorsal fin, which has a slightly rounded tip and originates over the rear tips of the pectoral fins.The Galapagos shark is an active predator often encountered in large groups. It feeds mainly on bottom-dwelling bony fishes and cephalopods; larger individuals have a much more varied diet, consuming other sharks, marine iguanas, sea lions, and even garbage. As in other requiem sharks, reproduction is viviparous, with females bearing litters of 4–16 pups every 2 to 3 years. The juveniles tend to remain in shallow water to avoid predation by the adults. The International Union for Conservation of Nature (IUCN) has assessed this species as least concern, but it has a slow reproductive rate and there is heavy fishing pressure across its range.")]
+    
+    let imagesS = [UIImage(named: "Bull Shark"),
+                    UIImage(named: "Great White Shark"),
+                    UIImage(named: "Hammer Head Shark"),
+                    UIImage(named: "Megamouth Shark"),
+                    UIImage(named: "Whale Shark"),
+                    UIImage(named: "Cow Shark"),
+                    UIImage(named: "Thresher Shark"),
+                    UIImage(named: "Cat Shark"),
+                    UIImage(named: "Nurse Shark"),
+                    UIImage(named: "Silky Shark"),
+                    UIImage(named: "Tiger Shark"),
+                    UIImage(named: "Lemon Shark"),
+                    UIImage(named: "Galapagos Shark")
+                    ]
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return Title.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath) as! TableViewCell
+        cell.imageCell.image = self.imagesS[indexPath.row]
+        cell.titleLabel01.text = self.Title[indexPath.row]
+        cell.textLabel02.text = self.Text[indexPath.row]
+        
+        return cell
+    }
+
+
+}
+
