@@ -1,12 +1,11 @@
-from app.SharkAttackRepo import SharkAttackRepo
+from backend.attack_repo import SharkAttackRepo
 from flask import Flask, jsonify
 
-app = Flask(__name__)
+application = Flask(__name__)
 repo = SharkAttackRepo(':memory:')
-repo.addAllCsv('../attacks-processed.csv')
+repo.addAllCsv('/var/app/current/backend/attacks-processed.csv')
 
-
-@app.route("/attacks/all")
+@application.route("/attacks/all", methods=['GET'])
 def getAll():
     json = []
     for attack in repo.getAll():

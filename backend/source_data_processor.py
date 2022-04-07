@@ -2,8 +2,8 @@ import csv
 import traceback
 from datetime import datetime
 
-from app import Gps
-from app.SharkAttack import SharkAttack
+from backend import gps
+from backend.attack import SharkAttack
 from dateutil import parser
 
 
@@ -74,34 +74,6 @@ def writeSharkAttacksToCsv(sharkAttacks: [SharkAttack], csvFile: str):
                      s.injury, s.fatal, s.species, s.source, s.link])
             except BaseException:
                 traceback.print_exc()
-
-
-# Convert processed shark attack csv into list of shark attack objects
-def getSharkAttacksFromProcessedCsv(csvFile: str) -> [SharkAttack]:
-    attacks = []
-    with open(csvFile, encoding = "ISO-8859-1") as csv_file:
-        csv_reader = csv.reader(csv_file, delimiter=',')
-        line_count = 0
-        for row in csv_reader:
-            id = row[0]
-            datetime = row[1]
-            latitude = row[2]
-            longitude = row[3]
-            address = row[4]
-            type = row[5]
-            activity = row[6]
-            name = row[7]
-            sex = row[8]
-            age = row[9]
-            injury = row[10]
-            fatal = row[11]
-            species = row[12]
-            source = row[13]
-            link = row[14]
-            attack = SharkAttack(id, datetime, latitude, longitude, address, type, activity, name, sex, age, injury,
-                                 fatal, species, source, link)
-            attacks.append(attack)
-    return attacks
 
 
 # Convert date/time strings to a datetime object

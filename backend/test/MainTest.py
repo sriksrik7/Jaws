@@ -1,6 +1,7 @@
+
 import unittest
 
-from test.SharkAttackRepoTest import SharkAttackRepoTest
+from backend.test.SharkAttackRepoTest import SharkAttackRepoTest
 
 # Main Class to test all unit test classes
 
