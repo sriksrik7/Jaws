@@ -3,7 +3,6 @@ python:
   - "3.7"
 install:
   - pip3 install --upgrade setuptools
-  - pip3 install PyQt5
   - pip3 install --upgrade pip
   - pip3 install numpy
   - pip3 install Global_land_mask
@@ -12,7 +11,6 @@ install:
   - pip3 install certifi
   - pip3 install python-coveralls
 script:
-  - cd back-end
-  - python -m coverage run -m unittest test/MainTest.py
+  - python -m coverage run -m backend/test/MainTest.py
 after_success:
   coveralls
