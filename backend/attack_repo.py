@@ -31,6 +31,11 @@ class SharkAttackRepo:
             select * from sharks;
             """)
 
+    def getByAddress(self, address: str) -> [SharkAttack]:
+        return self.__executeQuery("""
+            select * from sharks where address='{0}';
+            """.format(address))
+
     def createSharkAttackTable(self):
         self.__executeScript("""
             create table sharks(
