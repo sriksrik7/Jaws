@@ -1,6 +1,6 @@
 from datetime import datetime
 
-import geopy.distance
+from geopy.distance import distance
 
 
 class SharkAttack:
@@ -26,7 +26,7 @@ class SharkAttack:
     def isWithinRadius(self, latitude: float, longitude: float, mileRadius: int):
         input_location = (latitude, longitude)
         attack_location = (self.latitude, self.longitude)
-        mileDistance = geopy.distance.geodesic(input_location, attack_location).miles
+        mileDistance = distance(input_location, attack_location).miles
         print("distance between {0}, {1} and {2}, {3} is {4} miles".format(latitude, longitude, self.latitude, self.longitude, mileDistance))
         return mileRadius > mileDistance
 
