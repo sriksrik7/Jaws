@@ -1,5 +1,7 @@
 from datetime import datetime
 
+import geopy.distance
+
 
 class SharkAttack:
     def __init__(self, id: str, datetime: datetime, latitude: float, longitude: float, address: str, type: str,
@@ -20,6 +22,13 @@ class SharkAttack:
         self.species = species
         self.source = source
         self.link = link
+
+    def isWithinRadius(self, latitude: float, longitude: float, mileRadius: int):
+        input_location = (latitude, longitude)
+        attack_location = (self.latitude, self.longitude)
+        mileDistance = geopy.distance.geodesic(input_location, attack_location).miles
+        print("distance between {0}, {1} and {2}, {3} is {4} miles".format(latitude, longitude, self.latitude, self.longitude, mileDistance))
+        return mileRadius > mileDistance
 
     def serialize(self):
         return {"id": self.id,
