@@ -11,6 +11,6 @@ install:
   - pip3 install certifi
   - pip3 install python-coveralls
 script:
-  - python -m coverage run -m backend/test/MainTest.py
+  - python -m coverage run -m unittest backend/test/MainTest.py
 after_success:
   coveralls
