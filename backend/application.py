@@ -1,7 +1,10 @@
+import sys
+
 from backend.attack import SharkAttack
 from backend.attack_repo import SharkAttackRepo
 from flask import Flask, jsonify, request
 
+sys.path.append('/usr/local/lib/python3.7/site-packages')
 application = Flask(__name__)
 repo = SharkAttackRepo(':memory:')
 repo.addAllCsv('/var/app/current/backend/attacks-processed.csv')
