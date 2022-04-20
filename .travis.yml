@@ -12,5 +12,7 @@ install:
   - pip3 install python-coveralls
 script:
   - python -m coverage run -m unittest backend/test/MainTest.py
+  - python -m coverage report -m
+
 after_success:
   coveralls
