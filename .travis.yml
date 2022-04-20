@@ -1,6 +1,7 @@
 language: python
 python:
   - "3.7"
+  - "3.8"
 install:
   - pip3 install --upgrade setuptools
   - pip3 install --upgrade pip
@@ -9,7 +10,8 @@ install:
   - pip3 install python-dateutil
   - pip3 install geopy
   - pip3 install certifi
-  - pip3 install coveralls
+  - pip3 install coverage==4.5.4
+  - pip3 install python-coveralls
 script:
   - python -m coverage run -m unittest backend/test/MainTest.py
   - python -m coverage report -m
