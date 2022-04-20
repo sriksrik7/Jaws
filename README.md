@@ -29,9 +29,9 @@ ________________________________________________________________________________
 ```
 
 ## Back-End Test Status
-[![build status of Back-End](https://app.travis-ci.com/sriksrik7/Jaws.svg?branch=main)](https://app.travis-ci.com/github/sriksrik7/Jaws)
+[![build status of Back-End](https://app.travis-ci.com/sriksrik7/Jaws.svg?branch=38-update-ci-to-show-code-coverage)](https://app.travis-ci.com/github/sriksrik7/Jaws)
 
-[![Coverage Status](https://coveralls.io/repos/github/sriksrik7/Jaws/badge.svg?branch=main)](https://coveralls.io/github/sriksrik7/Jaws?branch=main)
+[![Coverage Status](https://coveralls.io/repos/github/sriksrik7/Jaws/badge.svg?branch=38-update-ci-to-show-code-coverage)](https://coveralls.io/github/sriksrik7/Jaws?branch=38-update-ci-to-show-code-coverage)
 
 
 Created by graduate students from Stevens University
