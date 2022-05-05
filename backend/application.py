@@ -6,7 +6,7 @@ from flask import Flask, jsonify, request
 
 application = Flask(__name__)
 repo = SharkAttackRepo(':memory:')
-repo.addAllCsv('attacks-processed.csv')
+repo.addAllCsv('/var/app/current/backend/attacks-processed.csv')
 service = SharkAttackService(repo)
 
 
